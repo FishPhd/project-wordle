@@ -14,25 +14,32 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      {guessGrid.map((row) => (
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {row.map((item) => (
-            <>
+      {guessGrid.map((row, index) => (
+        <div
+          key={`guessGrid ${row}-${index}`}
+          style={{ display: "flex", flexWrap: "wrap" }}
+        >
+          {row.map((item, idx) => (
+            <div key={`guessGrid ${item}-${idx}`}>
               <p>{item}</p>
               <Guess />
-            </>
+            </div>
           ))}
         </div>
       ))}
 
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <p>worlde:</p>
         <input
           maxLength={5}
-          pattern="[A-Az]5"
+          pattern="[A-Za-z]{5}"
           style={{ textTransform: "uppercase" }}
           onChange={(e) => {
-            setGuess(e.target.value);
+            setGuess(e.target.value.toUpperCase());
           }}
         />
         <button
