@@ -1,5 +1,5 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
+"use client";
+import "../styles/global.css";
 import { useState } from "react";
 import Guess from "../components/Guess/guess";
 
@@ -13,9 +13,10 @@ export default function Home() {
     .map((_, index) => new Array(5).fill(index));
 
   return (
-    <div className={styles.container}>
+    <div className="mx-auto max-w-3xl">
       {guessGrid.map((row, index) => (
         <div
+          className="text-center"
           key={`guessGrid ${row}-${index}`}
           style={{ display: "flex", flexWrap: "wrap" }}
         >
@@ -29,15 +30,16 @@ export default function Home() {
       ))}
 
       <form
+        className="flex pt-4"
         onSubmit={(e) => {
           e.preventDefault();
         }}
       >
-        <p>worlde:</p>
+        <p>wordle:</p>
         <input
           maxLength={5}
           pattern="[A-Za-z]{5}"
-          style={{ textTransform: "uppercase" }}
+          className="border-2 uppercase"
           onChange={(e) => {
             setGuess(e.target.value.toUpperCase());
           }}
