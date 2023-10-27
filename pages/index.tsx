@@ -10,20 +10,20 @@ export default function Home() {
 
   const guessGrid: number[][] = new Array(6)
     .fill(0)
-    .map(() => new Array(5).fill({ call: "1" }));
-    const array = [[null,null,null],[null,null,null]]
+    .map((_, index) => new Array(5).fill(index));
 
-    return (
-    <div> {array.map(x=> x.map(y=> <div>{....}</div> ))}</div>
-    )
   return (
     <div className={styles.container}>
-      {guessGrid.map(value => {
-          return (<>
-            <p>{value}</p>
-            <Guess />
-          </>);}
-        ))};
+      {guessGrid.map((row) => (
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
+          {row.map((item) => (
+            <>
+              <p>{item}</p>
+              <Guess />
+            </>
+          ))}
+        </div>
+      ))}
 
       <form>
         <p>worlde:</p>
